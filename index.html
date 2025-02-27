@@ -3,59 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kartu Ucapan Generator</title>
-    <style>
-        body {
-            font-family: 'Caveat', cursive;
-            text-align: center;
-            background: #f8f1e4;
-        }
-        #card {
-            width: 500px;
-            height: 300px;
-            background: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 40px;
-            margin: 20px auto;
-            border: 2px solid #3e2723;
-            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
-        }
-        button {
-            padding: 10px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-    </style>
+    <title>Website Kelas</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Kartu Ucapan Generator</h1>
-    <input type="text" id="textInput" placeholder="Masukkan teks...">
-    <button onclick="updateCard()">Tampilkan</button>
-    <button onclick="downloadCard()">Unduh</button>
-
-    <div id="card">Selamat!</div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html-to-image/1.10.10/html-to-image.min.js"></script>
-    <script>
-        function updateCard() {
-            const text = document.getElementById("textInput").value || "Selamat!";
-            document.getElementById("card").textContent = text;
-        }
-
-        function downloadCard() {
-            htmlToImage.toPng(document.getElementById("card"))
-                .then(function (dataUrl) {
-                    const link = document.createElement("a");
-                    link.href = dataUrl;
-                    link.download = "kartu-ucapan.png";
-                    link.click();
-                })
-                .catch(function (error) {
-                    console.error("Gagal mengunduh gambar:", error);
-                });
-        }
-    </script>
+    <header>
+        <h1>Selamat Datang di Website Kelas</h1>
+    </header>
+    
+    <section class="slider-container">
+        <div class="slider">
+            <img src="slider1.jpg" alt="Slide 1">
+            <img src="slider2.jpg" alt="Slide 2">
+            <img src="slider3.jpg" alt="Slide 3">
+        </div>
+    </section>
+    
+    <section class="reels">
+        <video controls>
+            <source src="reel1.mp4" type="video/mp4">
+            Browser Anda tidak mendukung tag video.
+        </video>
+    </section>
+    
+    <script src="index.js"></script>
 </body>
 </html>
