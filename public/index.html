@@ -4,20 +4,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kartu Ucapan Generator</title>
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: 'Caveat', cursive;
+            text-align: center;
+            background: #f8f1e4;
+        }
+        #card {
+            width: 500px;
+            height: 300px;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            margin: 20px auto;
+            border: 2px solid #3e2723;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        button {
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Generator Kartu Ucapan</h1>
-        <input type="text" id="message" placeholder="Tulis ucapan di sini..." oninput="updateCard()">
-        
-        <label><input type="checkbox" id="bold" onchange="updateCard()"> Bold</label>
-        <label><input type="checkbox" id="italic" onchange="updateCard()"> Italic</label>
-        
-        <img id="cardImage" src="" alt="Kartu Ucapan">
-        <button onclick="downloadCard()">Unduh Kartu</button>
-    </div>
-    <script src="script.js"></script>
+    <h1>Kartu Ucapan Generator</h1>
+    <input type="text" id="textInput" placeholder="Masukkan teks...">
+    <button onclick="updateCard()">Tampilkan</button>
+    <button onclick="downloadCard()">Unduh</button>
+
+    <div id="card">Selamat!</div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html-to-image/1.10.10/html-to-image.min.js"></script>
+    <script>
+        function updateCard() {
+            const text = document.getElementById("textInput").value || "Selamat!";
+            document.getElementById("card").textContent = text;
+        }
+
+        function downloadCard() {
+            htmlToImage.toPng(document.getElementById("card"))
+                .then(function (dataUrl) {
+                    const link = document.createElement("a");
+                    link.href = dataUrl;
+                    link.download = "kartu-ucapan.png";
+                    link.click();
+                })
+                .catch(function (error) {
+                    console.error("Gagal mengunduh gambar:", error);
+                });
+        }
+    </script>
 </body>
 </html>
